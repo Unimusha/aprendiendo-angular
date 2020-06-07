@@ -1,0 +1,48 @@
+<h2>Crear usuario</h2>
+
+<form #newUser="ngForm" (ngSubmit)="onSubmit(newUser)">
+
+    <p>
+        <label for="name">Nombre</label>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="new_user.name" required>
+        <span *ngIf="name.touched && !name.valid"></span>
+    </p>
+
+    <p>
+        <label for="job">Trabajo</label>
+        <input type="text" name="job" #job="ngModel" [(ngModel)]="new_user.job" required>
+        <span *ngIf="job.touched && !job.valid"></span>
+    </p>
+
+    <input type="submit" value="Guardar Usuario" [disabled]="!newUser.form.valid">
+</form>
+
+<div *ngIf="usuario_guardado"></div>
+<h3>{{usuario_guardado.name}}</h3>
+<h4>{{usuario_guardado.job}}</h4>
+<hr>
+
+<p>{{fecha | date:'fullDate'}}</p>
+<p>{{fecha | date:'dd/MM/yy' | uppercase}}</p>
+<p>{{'HOLA MUNDO ESTOY USANDO UNA PIPE LOWERCASE' | lowercase}}</p>
+<p>{{4 | calculadora: 10}}</p>
+<hr>
+
+<input type="text" [(ngModel)]="userId" (keyup.enter)="cargaUsuario()">
+
+
+<div *ngIf="!user">Cargando...</div>
+
+<div *ngIf="user">
+    <img src="{{user.avatar}}" width="200">
+<h2>{{user.first_name+' '+user.last_name}}</h2>
+
+<hr>
+<input type="text" [(ngModel)]="userIdTPV" (keyup.enter)="cargaUsuarioTPV()">
+
+<div *ngIf="userTPV">
+<h2>{{userTPV.nombre}}</h2>
+</div>
+
+
+
